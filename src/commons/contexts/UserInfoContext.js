@@ -25,16 +25,18 @@ const UserInfoContext = createContext({
 const UserInfoProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState(null);
   const [isLogin, setIsLogin] = useState(null);
-  const [isCounselor, setIsCounselor] = useState(null);
-  const [isProfessor, setIsProfessor] = useState(null);
-  const [isAdmin, setIsAdmin] = useState(null);
+  const [isStudent, setIsStudent] = useState(false);
+  const [isCounselor, setIsCounselor] = useState(false);
+  const [isProfessor, setIsProfessor] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const value = {
-    states: { userInfo, isLogin, isAdmin, isCounselor, isProfessor },
+    states: { userInfo, isLogin, isAdmin, isStudent, isCounselor, isProfessor },
     actions: {
       setUserInfo,
       setIsLogin,
       setIsAdmin,
+      setIsStudent,
       setIsCounselor,
       setIsProfessor,
     },
@@ -52,6 +54,7 @@ const UserInfoProvider = ({ children }) => {
         setIsAdmin(user.userType === 'ADMIN');
         setIsCounselor(user.userType === 'COUNSELOR');
         setIsProfessor(user.userType === 'PROFESSOR');
+        setIsStudent(user.userType === 'STUDENT');
       } catch (err) {
         // 토큰 만료, 토큰이 잘못된 경우
         cookies.remove('token', { path: '/' });

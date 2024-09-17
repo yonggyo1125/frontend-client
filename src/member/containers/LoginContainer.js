@@ -15,12 +15,19 @@ const LoginContainer = () => {
   const { setMainTitle } = getCommonActions();
   useLayoutEffect(() => {
     setMainTitle(t('로그인'));
-  }, []);
+  }, [setMainTitle, t]);
 
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
 
-  const { setIsLogin, setIsAdmin, setUserInfo } = getUserActions();
+  const {
+    setIsLogin,
+    setIsAdmin,
+    setIsStudent,
+    setIsCounselor,
+    setIsProfessor,
+    setUserInfo,
+  } = getUserActions();
 
   const onSubmit = useCallback(
     (e) => {
@@ -63,8 +70,10 @@ const LoginContainer = () => {
               setIsLogin(true); // 로그인 상태
               setUserInfo(user);
 
-              const isAdmin = user.userType === 'ADMIN';
-              setIsAdmin(isAdmin); // 관리자 여부
+              setIsAdmin(user.userType === 'ADMIN'); // 관리자 여부
+              setIsStudent(user.userType === 'STUDENT');
+              setIsCounselor(user.userType === 'COUNSELOR');
+              setIsProfessor(user.userType === 'PROFESSOR');
 
               /**
                * 후속 처리 : 회원 전용 서비스 URL로 이동
@@ -85,7 +94,18 @@ const LoginContainer = () => {
           setErrors({ ..._errors });
         });
     },
-    [form],
+    [
+      form,
+      router,
+      searchParams,
+      setIsAdmin,
+      setIsCounselor,
+      setIsLogin,
+      setIsProfessor,
+      setIsStudent,
+      setUserInfo,
+      t,
+    ],
   );
 
   const onChange = useCallback((e) => {

@@ -104,7 +104,7 @@ const JoinContainer = () => {
         }
       })();
     },
-    [form],
+    [form, router, t],
   );
 
   const onChange = useCallback((e) => {
