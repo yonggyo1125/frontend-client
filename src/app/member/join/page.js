@@ -1,7 +1,11 @@
 import JoinContainer from '@/member/containers/JoinContainer';
-
+import GuestOnlyContainer from '@/member/containers/GuestOnlyContainer';
 const JoinPage = () => {
-  return <JoinContainer />;
+  return (
+    <GuestOnlyContainer>
+      <JoinContainer />
+    </GuestOnlyContainer>
+  );
 };
 
 export default JoinPage;

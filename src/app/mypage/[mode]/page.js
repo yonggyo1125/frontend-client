@@ -1,5 +1,6 @@
 import BoardContainer from '@/mypage/containers/BoardContainer';
 import InfoContainer from '@/mypage/containers/InfoContainer';
+import MemberOnlyContainer from '@/member/containers/MemberOnlyContainer';
 
 const MypageModePage = ({ params }) => {
   const { mode } = params;
@@ -13,7 +14,11 @@ const MypageModePage = ({ params }) => {
       Container = InfoContainer;
   }
 
-  return <Container />;
+  return (
+    <MemberOnlyContainer>
+      <Container />
+    </MemberOnlyContainer>
+  );
 };
 
 export default MypageModePage;
