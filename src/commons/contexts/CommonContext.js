@@ -9,7 +9,7 @@ const CommonContext = createContext({
 });
 
 const CommonProvider = ({ children }) => {
-  const [mainTitle, setMainTitle] = useState('테스트');
+  const [mainTitle, setMainTitle] = useState('');
   const [subTitle, setSubTitle] = useState('');
   const [showHeader, setShowHeader] = useState(true);
   const [showFooter, setShowFooter] = useState(true);

@@ -5,7 +5,7 @@ import cookies from 'react-cookies';
 export const apiLogin = (form) =>
   new Promise((resolve, reject) => {
     cookies.remove('token', { path: '/' });
-    apiRequest('/account/token', 'POST', form)
+    apiRequest('/member/account/token', 'POST', form)
       .then((res) => {
         if (!res.data.success) {
           // 검증 실패, 로그인 실패

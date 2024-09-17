@@ -6,7 +6,7 @@ export const apiJoin = (form) =>
   new Promise((resolve, reject) => {
     cookies.remove('token', { path: '/' });
 
-    apiRequest('/account', 'POST', form)
+    apiRequest('/member/account', 'POST', form)
       .then((res) => {
         if (res.status !== 201) {
           // 검증 실패
