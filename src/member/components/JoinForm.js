@@ -328,7 +328,7 @@ const JoinForm = ({ form, errors, onSubmit, onChange, onToggle }) => {
       <StyledButton type="submit" variant="primary">
         {t('회원가입')}
       </StyledButton>
-      <StyledButton variant="danger">{errors?.global}</StyledButton>
+      <StyledMessage variant="danger">{errors?.global}</StyledMessage>
     </FormBox>
   );
 };
