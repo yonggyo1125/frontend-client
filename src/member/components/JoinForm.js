@@ -43,7 +43,7 @@ const JoinForm = ({ form, errors, onSubmit, onChange, onToggle }) => {
           <StyledInput
             type="text"
             name="email"
-            value={form?.email}
+            value={form?.email ?? ''}
             onChange={onChange}
           />
           <StyledMessage variant="danger">{errors?.email}</StyledMessage>
@@ -55,7 +55,7 @@ const JoinForm = ({ form, errors, onSubmit, onChange, onToggle }) => {
           <StyledInput
             type="password"
             name="password"
-            value={form?.password}
+            value={form?.password ?? ''}
             onChange={onChange}
           />
           <StyledMessage variant="danger">{errors?.password}</StyledMessage>
@@ -67,7 +67,7 @@ const JoinForm = ({ form, errors, onSubmit, onChange, onToggle }) => {
           <StyledInput
             type="password"
             name="confirmPassword"
-            value={form?.confirmPassword}
+            value={form?.confirmPassword ?? ''}
             onChange={onChange}
           />
           <StyledMessage variant="danger">
@@ -81,7 +81,7 @@ const JoinForm = ({ form, errors, onSubmit, onChange, onToggle }) => {
           <StyledInput
             type="text"
             name="userName"
-            value={form?.userName}
+            value={form?.userName ?? ''}
             onChange={onChange}
           />
           <StyledMessage variant="danger">{errors?.userName}</StyledMessage>
@@ -93,7 +93,7 @@ const JoinForm = ({ form, errors, onSubmit, onChange, onToggle }) => {
           <StyledInput
             type="text"
             name="mobile"
-            value={form?.mobile}
+            value={form?.mobile ?? ''}
             onChange={onChange}
           />
           <StyledMessage variant="danger">{errors?.mobile}</StyledMessage>
@@ -105,7 +105,7 @@ const JoinForm = ({ form, errors, onSubmit, onChange, onToggle }) => {
           <StyledInput
             type="text"
             name="zonecode"
-            value={form?.zonecode}
+            value={form?.zonecode ?? ''}
             onChange={onChange}
           />
           <StyledMessage variant="danger">{errors?.zonecode}</StyledMessage>
@@ -117,7 +117,7 @@ const JoinForm = ({ form, errors, onSubmit, onChange, onToggle }) => {
           <StyledInput
             type="text"
             name="address"
-            value={form?.address}
+            value={form?.address ?? ''}
             onChange={onChange}
           />
           <StyledMessage variant="danger">{errors?.address}</StyledMessage>
@@ -129,7 +129,7 @@ const JoinForm = ({ form, errors, onSubmit, onChange, onToggle }) => {
           <StyledInput
             type="text"
             name="addressSub"
-            value={form?.addressSub}
+            value={form?.addressSub ?? ''}
             onChange={onChange}
           />
           <StyledMessage variant="danger">{errors?.addressSub}</StyledMessage>
@@ -141,16 +141,38 @@ const JoinForm = ({ form, errors, onSubmit, onChange, onToggle }) => {
           <StyledInput
             type="date"
             name="birth"
-            value={form?.birth}
+            value={form?.birth ?? ''}
             onChange={onChange}
           />
           <StyledMessage variant="danger">{errors?.birth}</StyledMessage>
         </dd>
       </dl>
       <dl>
+        <dt>{t('성별')}</dt>
+        <dd>
+          <span onClick={() => onToggle('gender', 'FEMALE')}>
+            {form?.gender === 'FEMALE' ? (
+              <IoMdRadioButtonOn />
+            ) : (
+              <IoMdRadioButtonOff />
+            )}
+            {t('여성')}
+          </span>
+          <span onClick={() => onToggle('gender', 'MALE')}>
+            {form?.gender === 'MALE' ? (
+              <IoMdRadioButtonOn />
+            ) : (
+              <IoMdRadioButtonOff />
+            )}
+            {t('남성')}
+          </span>
+          <StyledMessage variant="danger">{errors?.gender}</StyledMessage>
+        </dd>
+      </dl>
+      <dl>
         <dt>{form?.userType === 'STUDENT' ? t('재학상태') : t('재직상태')}</dt>
         <dd>
-          {form?.userType === 'student' ? (
+          {form?.userType === 'STUDENT' ? (
             <>
               <span onClick={() => onToggle('status', 'ONCLASS')}>
                 {form?.status === 'ONCLASS' ? (
@@ -205,7 +227,7 @@ const JoinForm = ({ form, errors, onSubmit, onChange, onToggle }) => {
           <StyledInput
             type="text"
             name="deptNm"
-            value={form?.deptNm}
+            value={form?.deptNm ?? ''}
             onChange={onChange}
           />
           <StyledMessage variant="danger">{errors?.deptNm}</StyledMessage>
@@ -219,7 +241,7 @@ const JoinForm = ({ form, errors, onSubmit, onChange, onToggle }) => {
           <StyledInput
             type="text"
             name="deptNo"
-            value={form?.deptNo}
+            value={form?.deptNo ?? ''}
             onChange={onChange}
           />
           <StyledMessage variant="danger">{errors?.deptNo}</StyledMessage>
@@ -233,7 +255,7 @@ const JoinForm = ({ form, errors, onSubmit, onChange, onToggle }) => {
               <StyledInput
                 type="text"
                 name="stdntNo"
-                value={form?.stdntNo}
+                value={form?.stdntNo ?? ''}
                 onChange={onChange}
               />
               <StyledMessage variant="danger">{errors?.stdntNo}</StyledMessage>
@@ -245,7 +267,7 @@ const JoinForm = ({ form, errors, onSubmit, onChange, onToggle }) => {
               <StyledInput
                 type="text"
                 name="grade"
-                value={form?.grade}
+                value={form?.grade ?? ''}
                 onChange={onChange}
               />
               <StyledMessage variant="danger">{errors?.grade}</StyledMessage>
@@ -254,6 +276,12 @@ const JoinForm = ({ form, errors, onSubmit, onChange, onToggle }) => {
           <dl>
             <dt>{t('지도교수')}</dt>
             <dd>
+              <StyledInput
+                type="text"
+                name="professor"
+                value={form?.professor ?? ''}
+                onChange={onChange}
+              />
               <StyledMessage variant="danger">
                 {errors?.professor}
               </StyledMessage>
@@ -268,7 +296,7 @@ const JoinForm = ({ form, errors, onSubmit, onChange, onToggle }) => {
               <StyledInput
                 type="text"
                 name="empNo"
-                value={form?.empNo}
+                value={form?.empNo ?? ''}
                 onChange={onChange}
               />
               <StyledMessage variant="danger">{errors?.empNo}</StyledMessage>
@@ -280,7 +308,7 @@ const JoinForm = ({ form, errors, onSubmit, onChange, onToggle }) => {
               <StyledInput
                 type="text"
                 name="subject"
-                value={form?.subject}
+                value={form?.subject ?? ''}
                 onChange={onChange}
               />
               <StyledMessage variant="danger">{errors?.subject}</StyledMessage>
@@ -288,13 +316,19 @@ const JoinForm = ({ form, errors, onSubmit, onChange, onToggle }) => {
           </dl>
         </>
       )}
-      <div className="agree" suppressHydrationWarning>
+      <div
+        className="agree"
+        suppressHydrationWarning
+        onClick={() => onToggle('agree', !Boolean(form?.agree))}
+      >
         {form?.agree ? <FaCheckSquare /> : <FaRegCheckSquare />}
         {t('약관에_동의')}
       </div>
+      <StyledMessage variant="danger">{errors?.agree}</StyledMessage>
       <StyledButton type="submit" variant="primary">
         {t('회원가입')}
       </StyledButton>
+      <StyledButton variant="danger">{errors?.global}</StyledButton>
     </FormBox>
   );
 };
