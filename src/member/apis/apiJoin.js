@@ -6,7 +6,7 @@ export const apiJoin = (form) =>
   new Promise((resolve, reject) => {
     cookies.remove('token', { path: '/' });
 
-    apiRequest('/api/member/account', 'POST', form)
+    apiRequest('/member/account', 'POST', form)
       .then((res) => {
         if (res.status !== 201) {
           // 검증 실패
@@ -23,7 +23,7 @@ export const apiJoin = (form) =>
 
 // 이메일 인증 메일 보내기
 export const apiEmailAuth = (email, uid) =>
-  requestData(`/api/email/verify?email=${email}&uid=${uid}`);
+  requestData(`/email/verify?email=${email}&uid=${uid}`);
 
 // 인증 메일 코드 검증 처리
 export const apiEmailAuthCheck = (authNum, uid) =>
@@ -31,7 +31,7 @@ export const apiEmailAuthCheck = (authNum, uid) =>
     (async () => {
       try {
         const res = await apiRequest(
-          `/api/email/auth_check?authNum=${authNum}&uid=${uid}`,
+          `/email/auth_check?authNum=${authNum}&uid=${uid}`,
         );
 
         if (res.status === 200 && res.data.success) {

@@ -35,7 +35,10 @@ const LoginForm = ({ form, errors, onSubmit, onChange }) => {
           <StyledMessage variant="danger">{errors?.password}</StyledMessage>
         </dd>
       </dl>
-      <StyledButton type="submit">{t('로그인')}</StyledButton>
+      <StyledButton type="submit" variant="primary">
+        {t('로그인')}
+      </StyledButton>
+      <StyledMessage variant="danger">{errors?.global}</StyledMessage>
     </FormBox>
   );
 };

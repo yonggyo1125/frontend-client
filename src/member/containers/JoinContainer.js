@@ -7,16 +7,18 @@ import JoinForm from '../components/JoinForm';
 import { StyledWrapper } from '@/commons/components/layouts/StyledWrapper';
 import { apiJoin } from '../apis/apiJoin';
 
+const initalForm = {
+  userType: 'STUDENT',
+  status: 'ONCLASS',
+  gender: 'FEMALE',
+  agree: false,
+};
+
 const JoinContainer = () => {
   const { t } = useTranslation();
   const { setMainTitle } = getCommonActions();
   const router = useRouter();
-  const [form, setForm] = useState({
-    userType: 'STUDENT',
-    status: 'ONCLASS',
-    gender: 'FEMALE',
-    agree: false,
-  });
+  const [form, setForm] = useState(initalForm);
   const [errors, setErrors] = useState({});
   useLayoutEffect(() => {
     setMainTitle(t('회원가입'));
@@ -85,6 +87,7 @@ const JoinContainer = () => {
       (async () => {
         try {
           await apiJoin(form);
+          setForm(initalForm);
           router.replace('/member/login'); // 회원가입 완료 후 페이지 이동
         } catch (err) {
           // 검증 실패, 가입 실패
