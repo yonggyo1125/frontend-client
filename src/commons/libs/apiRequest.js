@@ -6,7 +6,7 @@ export default function apiRequest(url, method = 'GET', data, headers) {
    * url - http://jsonplaceholder.. https://
    */
   if (!/^http[s]?/i.test(url)) {
-    url =  `/api/${url}`;
+    url = `/api${url}`;
   }
 
   /**
@@ -23,14 +23,20 @@ export default function apiRequest(url, method = 'GET', data, headers) {
   if (['POST', 'PUT', 'PATCH'].includes(method.toUpperCase()) && data) {
     options.data = data;
   }
-
   const token = cookies.load('token');
   if (token && token.trim()) {
     headers = headers ?? {};
     headers.Authorization = `Bearer ${token}`;
   }
 
-  if (headers) options.headers = headers;
+  if (data) {
+    headers = headers ?? {};
+    headers.contentType = 'application/json';
+  }
 
-  return axios(options);
+  try {
+    return axios(options);
+  } catch (err) {
+    console.log('err', err);
+  }
 }
