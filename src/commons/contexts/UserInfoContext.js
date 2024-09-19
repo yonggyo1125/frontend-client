@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { createContext, useState, useContext } from 'react';
 
 import cookies from 'react-cookies';
@@ -8,6 +9,7 @@ const UserInfoContext = createContext({
     // 상태 값
     userInfo: null,
     isLogin: false,
+    isStudent: false,
     isCounselor: false,
     isProfessor: false,
     isAdmin: false, // 관리자 여부
@@ -16,6 +18,7 @@ const UserInfoContext = createContext({
     // 상태 변경 함수
     setUserInfo: null,
     setIsLogin: null,
+    setIsStudent: null,
     setIsCounselor: null,
     setIsProfessor: null,
     setIsAdmin: null,
