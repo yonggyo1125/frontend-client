@@ -29,6 +29,10 @@ export default function apiRequest(url, method = 'GET', data, headers) {
     headers.Authorization = `Bearer ${token}`;
   }
 
+  if (headers) {
+    options.headers = headers;
+  }
+
   try {
     return axios(options);
   } catch (err) {

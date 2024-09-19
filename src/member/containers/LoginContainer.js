@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { getCommonActions } from '@/commons/contexts/CommonContext';
 import LoginForm from '../components/LoginForm';
 import { StyledWrapper } from '@/commons/components/layouts/StyledWrapper';
-import { apiLogin } from '../apis/apiLogin';
+import { apiLogin, apiUser } from '../apis/apiLogin';
 import { getUserActions } from '@/commons/contexts/UserInfoContext';
 const LoginContainer = ({ searchParams }) => {
   const router = useRouter();
@@ -60,7 +60,6 @@ const LoginContainer = ({ searchParams }) => {
         .then((res) => {
           const token = res.data;
           cookies.save('token', token, { path: '/' });
-
           (async () => {
             try {
               // 로그인 처리
@@ -79,6 +78,7 @@ const LoginContainer = ({ searchParams }) => {
                * 예) /member/login?redirectURL=로그인 이후 이동할 경로
                *
                */
+
               setForm({});
               const redirectURL = searchParams.get('redirectUrl') || '/';
               router.replace(redirectURL);
